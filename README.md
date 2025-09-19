@@ -2,6 +2,9 @@
 
 A **Minecraft-themed Hangman game** built with Python and Pygame.  
 
+<img width="30%" alt="image" src="https://github.com/user-attachments/assets/36817961-676b-44de-8484-b8d1c1d6d49f" />
+
+
 ---
 
 ## Features  
