@@ -15,8 +15,8 @@ class Controller():
 
     # Main function (loop)
     def start(self): 
-        
         while self.run:
+        
             if self.is_over():
                 
                 if self.game_over_sound:
@@ -28,7 +28,7 @@ class Controller():
             else:
                 self.get_pygame_event()
                 self.view.main_window(self.word, self.pressed_letters, self.penalties, self.words_found)
-            
+
             pygame.display.update()
 
         pygame.quit()
@@ -96,7 +96,8 @@ class Controller():
             self.already_used_words.append(word)
             return word
         else:
-            self.random_word()  
+            return self.random_word()  
+
     
     def is_in_word(self, letter):
         if letter not in self.word and letter not in self.pressed_letters:

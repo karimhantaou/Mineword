@@ -20,7 +20,12 @@ A **Minecraft-themed Hangman game** built with Python and Pygame.
 - Python **3.x**  
 - [Pygame](https://www.pygame.org/)  
 
+
 ## Installation
+
+Get the release version here : https://github.com/karimhantaou/Mineword/releases
+
+## Installation with the python files
 
 Clone the repository:
 
