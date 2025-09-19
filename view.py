@@ -10,6 +10,12 @@ class View():
             self.bg = pygame.image.load("ressources/background.png")
             pygame.init()
 
+            window_icon = pygame.image.load('ressources/icon.png')
+            pygame.display.set_icon(window_icon)
+
+            pygame.mixer.music.load('ressources/soundtrack.mp3')
+            pygame.mixer.music.play(-1)
+
             self.screen = pygame.display.set_mode((width, height))
             pygame.display.set_caption(self.game_title)
 
