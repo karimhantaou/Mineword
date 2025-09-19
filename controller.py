@@ -90,7 +90,7 @@ class Controller():
         english_words = f.read().splitlines()
         f.close()
 
-        word = english_words[random.randint(0, len(english_words))].lower()
+        word = english_words[random.randint(0, len(english_words)-1)].lower()
 
         if word not in self.already_used_words:
             self.already_used_words.append(word)
@@ -105,7 +105,6 @@ class Controller():
         if letter in self.word and letter not in self.pressed_letters:
             self.view.plop_sound()
         if letter in self.pressed_letters:
-            print("test")
             self.view.button_sound()
 
 
