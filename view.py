@@ -174,3 +174,20 @@ class View():
 
         restart_display = font.render("Press ESC to quit the scoreboard", True, 'white')
         self.screen.blit(restart_display, (self.width/2 - restart_display.get_width()/2, self.height - 50))
+
+
+    def hit_sound(self):
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('ressources/hit.mp3'))
+
+    def plop_sound(self):
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('ressources/plop.mp3'))
+    
+    def button_sound(self):
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('ressources/button.mp3'))
+    
+    def death_sound(self):
+        pygame.mixer.Channel(2).play(pygame.mixer.Sound('ressources/death.mp3'))
+
+    def victory_sound(self):
+        pygame.mixer.Channel(2).play(pygame.mixer.Sound('ressources/victory.mp3'))
+

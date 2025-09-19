@@ -11,12 +11,18 @@ class Controller():
         self.pressed_letters = ""
         self.penalties = 0
         self.words_found = 0
+        self.game_over_sound = True
 
     # Main function (loop)
     def start(self): 
         
         while self.run:
             if self.is_over():
+                
+                if self.game_over_sound:
+                    self.view.death_sound() if self.penalties >= 10 else self.view.victory_sound()
+                    self.game_over_sound = False
+
                 self.view.game_over(self.word, self.penalties, self.words_found)
                 self.get_pygame_event_over()
             else:
@@ -75,6 +81,7 @@ class Controller():
         self.pressed_letters = ""
         self.penalties = 0
         self.run = True
+        self.game_over_sound = True
 
 
     # Return a random english word from the words.txt file
@@ -94,6 +101,13 @@ class Controller():
     def is_in_word(self, letter):
         if letter not in self.word and letter not in self.pressed_letters:
             self.penalties += 1
+            self.view.hit_sound()
+        if letter in self.word and letter not in self.pressed_letters:
+            self.view.plop_sound()
+        if letter in self.pressed_letters:
+            print("test")
+            self.view.button_sound()
+
 
 
     # Return True if more than 10 penalities
@@ -106,6 +120,8 @@ class Controller():
         score = name + " : " + str(score) + "\n"
         f.write(score)
         f.close()
+
+        print("score inserted")
 
     # Test if each letter have been found
     def is_found(self):
