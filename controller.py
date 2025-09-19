@@ -6,6 +6,7 @@ class Controller():
     def __init__(self):
         self.view = View(600,600)
         self.run = True
+        self.already_used_words = []
         self.word = self.random_word()
         self.pressed_letters = ""
         self.penalties = 0
@@ -13,8 +14,8 @@ class Controller():
 
     # Main function (loop)
     def start(self): 
+        
         while self.run:
-            
             if self.is_over():
                 self.view.game_over(self.word, self.penalties, self.words_found)
                 self.get_pygame_event_over()
@@ -37,9 +38,8 @@ class Controller():
                     # Keybord alphabet    
                     if event.unicode.isalpha():
                         letter = event.unicode
-                        if letter not in self.pressed_letters:
-                            self.pressed_letters += letter
                         self.is_in_word(letter)    
+                        self.pressed_letters += letter
 
                     if event.key == pygame.K_RETURN:
                         self.scoreboard()
@@ -83,11 +83,16 @@ class Controller():
         english_words = f.read().splitlines()
         f.close()
 
-        return english_words[random.randint(0, len(english_words))].lower()
-    
+        word = english_words[random.randint(0, len(english_words))].lower()
 
+        if word not in self.already_used_words:
+            self.already_used_words.append(word)
+            return word
+        else:
+            self.random_word()  
+    
     def is_in_word(self, letter):
-        if letter not in self.word:
+        if letter not in self.word and letter not in self.pressed_letters:
             self.penalties += 1
 
 

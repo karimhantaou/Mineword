@@ -21,6 +21,7 @@ class View():
         self.render_life(penalties)
         self.render_word(word, pressed_letters)
         self.render_keyboard(pressed_letters)
+        self.render_shortcuts()
 
     # Show the main title
     def render_title(self):
@@ -87,12 +88,12 @@ class View():
 
         # Show the correct word
         font = pygame.font.Font(self.font_path, 30)
-        word_display = font.render(f"The word was: {word}", True, 'white')
+        word_display = font.render("The word was : " + word, True, 'white')
         self.screen.blit(word_display, (self.width/2 - word_display.get_width()/2, self.height/2 - word_display.get_height()/2))
 
         if penalties <= 10:
             # Show the number of penalties
-            penalties_display = font.render(f"Penalties: {penalties}", True, 'white')
+            penalties_display = font.render("Penalties : " + str(penalties) , True, 'white')
             self.screen.blit(penalties_display, (self.width/2 - penalties_display.get_width()/2, self.height/2 - penalties_display.get_height()/2 + 50))
 
         # Press any key to restart
@@ -106,7 +107,7 @@ class View():
 
     def render_counter(self, words_found):
         font = pygame.font.Font(self.font_path, 15)
-        counter = font.render(f"Words found: {words_found}", True, 'white')
+        counter = font.render(f"Words found : " + str(words_found), True, 'white')
         self.screen.blit(counter, (10, 10))
 
 
@@ -129,6 +130,16 @@ class View():
                 self.screen.blit(heart_img, (x, y))
             else:
                 self.screen.blit(heart_empty_img, (x, y))
+
+    def render_shortcuts(self):
+        
+        font = pygame.font.Font(self.font_path, 12)
+        word_display = font.render("Press ENTER to access the scoreboard", True, 'white')
+        self.screen.blit(word_display, (self.width/2 - word_display.get_width()/2, self.height - word_display.get_height() - 35))
+        
+        word_display = font.render("Press ESCAPE to exit the game", True, 'white')
+        self.screen.blit(word_display, (self.width/2 - word_display.get_width()/2, self.height - word_display.get_height() - 15))
+
 
     def scoreboard(self, name, scores, penalties):
         self.clear_screen()
